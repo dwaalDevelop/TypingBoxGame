@@ -1,0 +1,16 @@
+{
+    "name": "typingboxgame",
+    "version": "1.0.0",
+    "description": "typing video game for daconlatecla.com",
+    "main": "index.js",
+    "scripts": {
+        "start": "parcel src/index.html",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "dani maccari & manuel perez",
+    "license": "ISC",
+    "dependencies": {
+        "parcel-bundler": "^1.12.5",
+        "phaser": "^3.80.1"
+    }
+}
