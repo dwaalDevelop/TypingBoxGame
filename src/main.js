@@ -16,4 +16,4 @@ const game = new Phaser.Game(config)
 game.scene.add('scene_title', Scene_Title)
 game.scene.add('scene_game', Scene_Game)
 
-game.scene.start('scene_title')
+game.scene.start('scene_game')
