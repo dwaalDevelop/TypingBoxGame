@@ -12,16 +12,21 @@ class Object_WriteWord {
     // next position
     // next letter
     // completed
-    constructor() {
-        this.writeWord_id = Get_Random(sceneGame_all_words.length);
-        this.writeWord_word = sceneGame_all_words[this.writeWord_id];
-        //this.writeWord_length = this.writeWord_word.length;
-        this.writeWord_next_position = 0;
-        this.writeWord_next_letter = this.writeWord_word[0];
-        this.writeWord_completed = false;
+    constructor(column_pos, column_num) {
+        this.id = Get_Random(sceneGame_all_words.length);
+        this.word = sceneGame_all_words[this.id];
+        this.next_position = 0;
+        this.next_letter = this.word[0];
+        this.completed = false;
 
+        // X depends on the number of boxes
+        this.pos_x = (((window.innerWidth - viewport_margin) / column_num +1) * column_pos ) + viewport_margin/2;
+        // Y allways the same height
+        this.pos_y = (window.innerHeight / 10) *8; 
+
+        this.text = this.add.text( this.pos_x, this.pos_y, this.word, style_letters);
         // word selected
-        console.log(this.writeWord_word);
+        console.log(this.word);
 
     }
 
