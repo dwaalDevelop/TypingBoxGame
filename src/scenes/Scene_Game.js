@@ -1,5 +1,8 @@
-import Phaser from "phaser"
-import sceneGame_all_words from '../../all_words/spanish.json'
+import Phaser from "phaser";
+import sceneGame_all_words from '../../all_words/spanish.json';
+import { viewport_h, viewport_w, viewport_margin, style_letters} from '../globals.js';
+
+let sceneGame_level_words = [];
 
 function Get_Random(max) {
     return Math.floor(Math.random() * max);
@@ -20,17 +23,25 @@ class Object_WriteWord {
         this.completed = false;
 
         // X depends on the number of boxes
-        this.pos_x = (((window.innerWidth - viewport_margin) / column_num +1) * column_pos ) + viewport_margin/2;
+        this.pos_x = parseInt((((viewport_w - viewport_margin) / (column_num +1)) * column_pos ) + viewport_margin/2);
         // Y allways the same height
-        this.pos_y = (window.innerHeight / 10) *8; 
+        this.pos_y = parseInt((viewport_h / 10) *9);
 
-        this.text = this.add.text( this.pos_x, this.pos_y, this.word, style_letters);
+        //this.pos_y = 600;
+        //this.text = this.add.text( this.pos_x, this.pos_y, this.word, style_letters);
         // word selected
         console.log(this.word);
 
     }
 
-    checkLetter(letter) {
+    draw_Text() {
+        const style = { font: '24px Arial', fill: '#ffffff' };
+
+        // Create the text object
+        this.textObject = scene.add.text(100, 100, this.word, style);
+    }
+
+    check_Letter(letter) {
 
         if( letter == this.writeWord_next_letter) {
             console.log("Letra Correcta");
@@ -44,9 +55,6 @@ class Object_WriteWord {
             } else {
                 this.writeWord_next_letter = this.writeWord_word[this.writeWord_next_position];
             }
-            
-            
-
         }
     }
 
@@ -54,6 +62,7 @@ class Object_WriteWord {
 
 export default class Scene_Game extends Phaser.Scene
 {
+
     preload()
     {
 
@@ -61,16 +70,31 @@ export default class Scene_Game extends Phaser.Scene
 
     create()
     {
+        this.create_words(2); //num de palabras
         const sceneGame_puntuacion_text = this.add.text(window.innerWidth / 10, window.innerHeight / 15, 'Puntuación: 0');
         sceneGame_puntuacion_text.setOrigin(0, 0);
 
         //console.log(sceneGame_all_words[0][2])
 
         // Contar las líneas del archivo y actualizar el texto de puntuación
-        this.wordObject = new Object_WriteWord(1, 2);
         
         
-        const box = this.add.rectangle(this.wordObject.pos_x, this.wordObject.pos_y, 70, 70, 0xffffff)
+        console.log(sceneGame_level_words);
+        //const box = this.add.rectangle(sceneGame_level_words[0].pos_x, sceneGame_level_words[0].pos_y, 120, 40, 0xffffff)
+        //const box2 = this.add.rectangle(sceneGame_level_words[1].pos_x, sceneGame_level_words[1].pos_y, 120, 40, 0xffffff)
+        //box.setOrigin(0.5, 0.5);
+        //box2.setOrigin(0.5, 0.5);
+
+        //this.physics.add.existing(box);
+        //box.body.setVelocity(0, -100);
+    }
+
+    create_words(level) { //por ahora level es el número de palabras
+        console.log("choosing words");
+
+        for (var i = 1; i <= level; i++) {
+            sceneGame_level_words.push(new Object_WriteWord(i, level));
+        }
     }
 }
 
