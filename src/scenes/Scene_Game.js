@@ -62,8 +62,10 @@ export default class Scene_Game extends Phaser.Scene
         //console.log(sceneGame_all_words[0][2])
 
         // Contar las líneas del archivo y actualizar el texto de puntuación
-        this.wordObject = new Object_WriteWord();
+        this.wordObject = new Object_WriteWord(1, 2);
         
+        
+        const box = this.add.rectangle(this.wordObject.pos_x, this.wordObject.pos_y, 70, 70, 0xffffff)
     }
 }
 
