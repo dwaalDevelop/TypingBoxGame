@@ -35,10 +35,7 @@ class Object_WriteWord {
     }
 
     draw_Text() {
-        const style = { font: '24px Arial', fill: '#ffffff' };
-
-        // Create the text object
-        this.textObject = scene.add.text(100, 100, this.word, style);
+        
     }
 
     check_Letter(letter) {
@@ -70,7 +67,17 @@ export default class Scene_Game extends Phaser.Scene
 
     create()
     {
+
+        const style = { font: '24px Arial', fill: '#ffffff' };
         this.create_words(2); //num de palabras
+
+        // Create the text object
+        var textObject1 = this.add.text(sceneGame_level_words[0].pos_x, sceneGame_level_words[0].pos_y, sceneGame_level_words[0].word, style);
+        textObject1.setOrigin(0.5, 0.5);
+        var textObject2 = this.add.text(sceneGame_level_words[1].pos_x, sceneGame_level_words[1].pos_y, sceneGame_level_words[1].word, style);
+        textObject2.setOrigin(0.5, 0.5);
+
+
         const sceneGame_puntuacion_text = this.add.text(window.innerWidth / 10, window.innerHeight / 15, 'Puntuación: 0');
         sceneGame_puntuacion_text.setOrigin(0, 0);
 
