@@ -1,13 +1,17 @@
 import Phaser from "phaser";
 import sceneGame_all_words from '../../all_words/spanish.json';
 import { viewport_h, viewport_w, viewport_margin, style_letters} from '../globals.js';
+//import Object_Write_Word from './Object_Write_Word.js';
 
 let sceneGame_level_words = [];
+
+
 
 function Get_Random(max) {
     return Math.floor(Math.random() * max);
 }
-class Object_WriteWord {
+
+class Object_Write_Word {
     
     // id
     // word
@@ -15,7 +19,7 @@ class Object_WriteWord {
     // next position
     // next letter
     // completed
-    constructor(column_pos, column_num) {
+    constructor(coumn_my_num, coumn_total_num) {
         this.id = Get_Random(sceneGame_all_words.length);
         this.word = sceneGame_all_words[this.id];
         this.next_position = 0;
@@ -23,7 +27,7 @@ class Object_WriteWord {
         this.completed = false;
 
         // X depends on the number of boxes
-        this.pos_x = parseInt((((viewport_w - viewport_margin) / (column_num +1)) * column_pos ) + viewport_margin/2);
+        this.pos_x = parseInt((((viewport_w - viewport_margin) / (coumn_total_num +1)) * coumn_my_num ) + viewport_margin/2);
         // Y allways the same height
         this.pos_y = parseInt((viewport_h / 10) *9);
 
@@ -54,7 +58,6 @@ class Object_WriteWord {
             }
         }
     }
-
 }
 
 export default class Scene_Game extends Phaser.Scene
@@ -100,7 +103,7 @@ export default class Scene_Game extends Phaser.Scene
         console.log("choosing words");
 
         for (var i = 1; i <= level; i++) {
-            sceneGame_level_words.push(new Object_WriteWord(i, level));
+            sceneGame_level_words.push(new Object_Write_Word(i, level));
         }
     }
 }
