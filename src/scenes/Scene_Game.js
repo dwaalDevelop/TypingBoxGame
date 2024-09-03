@@ -2,11 +2,15 @@ import Phaser from "phaser";
 import sceneGame_all_words from '../../all_words/spanish.json';
 import { viewport_h, viewport_w, viewport_margin, style_letters, sceneGame_all_letters
 } from '../globals.js';
+import { Print_Words } from "../utils.js";
+
 //import Object_Write_Word from './Object_Write_Word.js';
 
 let sceneGame_level_words = [];
 
-
+document.addEventListener('keydown', function(event) {
+    console.log(`Tecla presionada: ${event.key}`);
+});
 
 function Get_Random(max) {
     return Math.floor(Math.random() * max);
@@ -22,10 +26,11 @@ class Object_Write_Word {
     // completed
     constructor(column_my_num, column_total_num) {
         this.id = Get_Random(sceneGame_all_words.length);
-        this.word = sceneGame_all_words[this.id];
+        this.word = sceneGame_all_words[this.id].normalize('NFC');
         this.next_position = 0;
         this.next_letter = this.word[0];
         this.completed = false;
+        console.log(this.next_letter);
 
         // X depends on the number of boxes
         this.pos_x = parseInt((((viewport_w - viewport_margin) / (column_total_num +1)) * column_my_num ) + viewport_margin/2);
@@ -119,6 +124,8 @@ export default class Scene_Game extends Phaser.Scene
         textObject2.setOrigin(0.5, 0.5);
 
 
+        Print_Words(this, sceneGame_level_words[0].word, 2, 10, 10);
+
         const sceneGame_puntuacion_text = this.add.text(window.innerWidth / 10, window.innerHeight / 15, 'Puntuación: 0');
         sceneGame_puntuacion_text.setOrigin(0, 0);
 
@@ -141,6 +148,11 @@ export default class Scene_Game extends Phaser.Scene
 
         //this.physics.add.existing(box);
         //box.body.setVelocity(0, -100);
+    }
+
+    update(time, delta) {
+        
+        
     }
 
     create_words(level) { //por ahora level es el número de palabras
