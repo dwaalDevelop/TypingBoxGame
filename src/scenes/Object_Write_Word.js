@@ -50,5 +50,4 @@ class Object_Write_Word {
             }
         }
     }
-
 }
