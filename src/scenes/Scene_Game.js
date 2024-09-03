@@ -1,7 +1,6 @@
 import Phaser from "phaser";
 import sceneGame_all_words from '../../all_words/spanish.json';
-import { viewport_h, viewport_w, viewport_margin, style_letters,
-    sceneGame_all_letters
+import { viewport_h, viewport_w, viewport_margin, style_letters, sceneGame_all_letters
 } from '../globals.js';
 //import Object_Write_Word from './Object_Write_Word.js';
 

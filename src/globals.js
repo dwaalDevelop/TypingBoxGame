@@ -7,4 +7,4 @@ export const viewport_margin = 140;
 // styles
 export const style_letters = {font: "Alkatra", fontSize: "18px", fill: "#FFFFFF" };
 
-export const all_letters = "abcdefghijklmnopqrstuvwxyz";
+export const sceneGame_all_letters = "abcdefghijklmnopqrstuvwxyz";
