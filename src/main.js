@@ -6,10 +6,33 @@ import Scene_Test from './scenes/Scene_Test'
 
 import { viewport_h, viewport_w} from './globals.js';
 
+/*
+const config = {
+    type: Phaser.AUTO,
+    width: 800,
+    height: 600,
+    scene: Example,
+    physics: {
+        default: 'arcade',
+        arcade: {
+            gravity: { y: 200 }
+        }
+    }
+};
+
+const game = new Phaser.Game(config);
+*/
+
 const config = {
     type: Phaser.AUTO,
     width: viewport_w,
     height: viewport_h,
+    physics: {
+        default: 'arcade',
+        arcade: {
+            gravity: { y: 200 }
+        }
+    }
     
 }
 

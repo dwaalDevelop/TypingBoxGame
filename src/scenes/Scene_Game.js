@@ -39,7 +39,7 @@ export default class Scene_Game extends Phaser.Scene
 
     preload()
     {
-        this.load.image("box", "../../woodBox.png")
+        this.load.image('box', 'assets/woodBox.png');
     }
 
     create()
